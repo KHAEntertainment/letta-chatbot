@@ -1,0 +1,23 @@
+providers = ["node"]
+
+[phases.setup]
+# Ensure a modern Node runtime compatible with Next.js 15
+nodejsVersion = "20"
+
+[phases.install]
+cmds = [
+  "npm ci"
+]
+
+[phases.build]
+cmds = [
+  "npm run build"
+]
+
+[start]
+# Respect Dokploy-provided PORT; default to 3000 locally
+cmd = "npm run start -- -p ${PORT:-3000} -H 0.0.0.0"
+
+[variables]
+PORT = "3000"
+NODE_ENV = "production"
