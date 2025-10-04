@@ -1,0 +1,38 @@
+import type { MetadataRoute } from 'next'
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: 'Letta Chatbot',
+    short_name: 'Letta Chat',
+    description:
+      'An example chatbot application built on the Letta API, which makes each chatbot a stateful agent (agent with memory) under the hood.',
+    start_url: '/',
+    scope: '/',
+    display: 'standalone',
+    orientation: 'portrait',
+    theme_color: '#0B0F19',
+    background_color: '#0B0F19',
+    lang: 'en',
+    categories: ['productivity', 'utilities', 'communication'],
+    icons: [
+      {
+        src: '/icon-192.png',
+        sizes: '192x192',
+        type: 'image/png',
+        purpose: 'any maskable'
+      },
+      {
+        src: '/icon-512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any maskable'
+      },
+      {
+        src: '/apple-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
+        purpose: 'any'
+      }
+    ]
+  }
+}

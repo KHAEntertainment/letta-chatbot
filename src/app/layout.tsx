@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import Providers from './providers'
@@ -7,6 +7,7 @@ import { SidebarProvider } from '@/components/ui/sidebar'
 import ContentLayout from './content-layout'
 import { ReasoningMessageProvider } from '@/components/toggle-reasoning-messages'
 import { DialogContextProvider } from '@/components/ui/agent-dialog'
+import SWRegister from './sw-register'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -21,7 +22,30 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Letta Chatbot with Memory Template',
   description:
-    'An example chatbot application built on the Letta API, which makes each chatbot a stateful agent (agent with memory) under the hood.'
+    'An example chatbot application built on the Letta API, which makes each chatbot a stateful agent (agent with memory) under the hood.',
+  themeColor: '#0B0F19',
+  manifest: '/manifest.webmanifest',
+  icons: {
+    icon: [
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }
+    ]
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black',
+    title: 'Letta Chatbot'
+  }
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#0B0F19'
 }
 
 export default function RootLayout({
@@ -45,6 +69,7 @@ export default function RootLayout({
             </SidebarProvider>
           </DialogContextProvider>
         </Providers>
+        <SWRegister />
       </body>
     </html>
   )
